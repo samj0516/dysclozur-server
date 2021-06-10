@@ -1,0 +1,62 @@
+[
+    {
+        "model": "dysclozur_api.post",
+        "pk": 1,
+        "fields": {
+            "user_id": 1,
+            "date_posted": "2021-06-08",
+            "title": "Former Air Force Pilot Breaks Down UFO Footage | WIRED",
+            "text": null,
+            "link": null,
+            "url_pic": null,
+            "url_video": "https://youtu.be/O6aBWssGnng",
+            "upload_pic": null,
+            "upload_video": null
+        }
+    },
+    {
+        "model": "dysclozur_api.post",
+        "pk": 2,
+        "fields": {
+            "user_id": 2,
+            "date_posted": "2021-06-09",
+            "title": "This was an X-Files episode called Ice. It did not end well.",
+            "text": null,
+            "link": "https://www.reuters.com/lifestyle/science/tiny-worm-comes-back-life-after-24000-years-siberian-deep-freeze-2021-06-09/",
+            "url_pic": null,
+            "url_video": null,
+            "upload_pic": null,
+            "upload_video": null
+        }
+    },
+    {
+        "model": "dysclozur_api.post",
+        "pk": 3,
+        "fields": {
+            "user_id": 2,
+            "date_posted": "2021-06-11",
+            "title": "Aliens Are Real, Says Harvard Astronomer",
+            "text": null,
+            "link": null,
+            "url_pic": null,
+            "url_video": "https://youtu.be/wScC8Hqtmcg",
+            "upload_pic": null,
+            "upload_video": null
+        }
+    },
+    {
+        "model": "dysclozur_api.post",
+        "pk": 4,
+        "fields": {
+            "user_id": 2,
+            "date_posted": "2021-06-11",
+            "title": "Bright blue UFO seen in Leeward, Oahu",
+            "text": null,
+            "link": null,
+            "url_pic": null,
+            "url_video": "https://youtu.be/JcZdpjZplhA",
+            "upload_pic": null,
+            "upload_video": null
+        }
+    }
+]

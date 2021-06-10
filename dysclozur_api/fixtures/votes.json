@@ -1,0 +1,20 @@
+[
+    {
+        "model": "dysclozur_api.vote",
+        "pk": 1,
+        "fields": {
+            "user_id": 1,
+            "post_id": 1,
+            "upvote": true
+        }
+    },
+    {
+        "model": "dysclozur_api.vote",
+        "pk": 2,
+        "fields": {
+            "user_id": 2,
+            "post_id": 1,
+            "upvote": true
+        }
+    }
+]

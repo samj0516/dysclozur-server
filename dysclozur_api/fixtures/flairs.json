@@ -1,0 +1,16 @@
+[
+    {
+        "model": "dysclozur_api.flair",
+        "pk": 1,
+        "fields": {
+            "label": "UFO Sighting"
+        }
+    },
+    {
+        "model": "dysclozur_api.flair",
+        "pk": 2,
+        "fields": {
+            "label": "US govt."
+        }
+    }
+]

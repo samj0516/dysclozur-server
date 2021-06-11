@@ -1,0 +1,20 @@
+[
+    {
+        "model": "dysclozur_api.DysclozurUser",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "The truth is out there!",
+            "avatar": null
+        }
+    },
+    {
+        "model": "dysclozur_api.DysclozurUser",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "bio": "Regular alient abductee since 2012",
+            "avatar": null
+        }
+    }
+]

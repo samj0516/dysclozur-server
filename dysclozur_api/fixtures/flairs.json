@@ -10,7 +10,7 @@
         "model": "dysclozur_api.flair",
         "pk": 2,
         "fields": {
-            "label": ""
+            "label": "US govt."
         }
     }
 ]

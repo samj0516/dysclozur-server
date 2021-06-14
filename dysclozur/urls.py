@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from dysclozur_api.views import register_user, login_user
+from rest_framework import routers
+from dysclozur_api.views import register_user, login_user, PostView
 
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'posts', PostView, 'post')
 urlpatterns = [
+    path('', include(router.urls)),
     path('register', register_user),
     path('login', login_user),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),

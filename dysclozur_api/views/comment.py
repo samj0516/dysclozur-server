@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.decorators import action
-from dysclozur_api.models import Post, Comment, DysclozurUser, dysclozur_user
+from dysclozur_api.models import Post, Comment, DysclozurUser
 from dysclozur_api.views.post import UserSerializer, DysclozurUserSerializer
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
@@ -17,11 +17,12 @@ class CommentView(ViewSet):
     def create(self, request):
         # Identify User
         user = User.objects.get(pk=request.auth.user.id)
+        dysclozur_user = DysclozurUser.objects.get(user=user)
         #Identify Post
-        post = Post.objects.get(pk=request.data['postId'])
+        post = Post.objects.get(pk=request.data['post'])
         # Create an instance of the comment
         comment = Comment()
-        comment.user = user
+        comment.user = dysclozur_user
         comment.post = post
         comment.comment = request.data['comment']
 

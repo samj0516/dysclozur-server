@@ -47,6 +47,52 @@ class PostView(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for single post
+        Returns:
+            Response -- JSON serialized post instance
+        """
+        try:
+            post = Post.objects.get(pk=pk)
+            serializer = PostSerializer(post, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
+    def update(self, request, pk=None):
+        """Hnalde PUT requests for post
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        user = DysclozurUser.objects.get(user=request.auth.user)
+        post = Post.objects.get(pk=pk)
+        post.user = user
+        post.date_posted = request.data['date_posted']
+        post.title = request.data['title']
+        post.text = request.data['text']
+        post.link = request.data['link']
+        post.url_pic = request.data['url_pic']
+        post.url_video = request.data['url_video']
+        post.upload_pic = request.data["upload_pic"]
+        post.upload_video = request.data['upload_video']
+        
+        post.save()
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single post
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            post = Post.objects.get(pk=pk)
+            post.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        except Post.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from dysclozur_api.views.comment import CommentView
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
@@ -21,6 +22,7 @@ from dysclozur_api.views import register_user, login_user, PostView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'posts', PostView, 'post')
+router.register(r'comments', CommentView, 'comment')
 urlpatterns = [
     path('', include(router.urls)),
     path('register', register_user),

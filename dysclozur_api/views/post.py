@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.decorators import action
-from dysclozur_api.models import Post, DysclozurUser
+from dysclozur_api.models import Post, DysclozurUser, Flair
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
 
@@ -94,7 +94,17 @@ class PostView(ViewSet):
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-  
+    @action(methods=['post'], detail=True)
+    def flair(self, request, pk=None):
+        post = Post.objects.get(pk=pk)
+        flair = Flair.objects.get(pk=request.data['flairId'])
+        if request.method == "POST":
+            try:
+                post.flairs.add(flair)
+                return Response({}, status=status.HTTP_201_CREATED)
+            except Exception:
+                return HttpResponse(Exception)
+        return Response({}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class UserSerializer(serializers.ModelSerializer):

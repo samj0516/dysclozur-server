@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from dysclozur_api.models import Vote, Post, 
+from dysclozur_api.models import Vote, Post 
 
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:

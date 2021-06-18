@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from dysclozur_api.views import register_user, login_user, PostView
+from dysclozur_api.views import register_user, login_user, PostView, VoteView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'posts', PostView, 'post')
 router.register(r'comments', CommentView, 'comment')
+router.register(r'votes', VoteView, 'vote')
 urlpatterns = [
     path('', include(router.urls)),
     path('register', register_user),

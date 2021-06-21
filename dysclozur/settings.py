@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config( 
+  cloud_name = "dysclozur", 
+  api_key = "182792315734188", 
+  api_secret = "KEGwpQZAABYUKDL9RJ7ELhAPyN8",
+  secure = true
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'dysclozur_api',
+    'cloudinary',
 ]
 
 REST_FRAMEWORK = {

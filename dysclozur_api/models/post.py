@@ -9,6 +9,6 @@ class Post(models.Model):
     link = models.URLField( null=True)
     url_pic = models.URLField(null=True)
     url_video = models.URLField(null=True)
-    upload_pic = models.ImageField(null=True, upload_to='images/', height_field=None, width_field=None)
-    upload_video = models.FileField(upload_to='videos/', null=True)
+    upload_pic = models.URLField(null=True)
+    upload_video = models.URLField(null=True)
     flairs = models.ManyToManyField('Flair', related_name='posts')

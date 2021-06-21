@@ -19,7 +19,7 @@ class CommentView(ViewSet):
         user = User.objects.get(pk=request.auth.user.id)
         dysclozur_user = DysclozurUser.objects.get(user=user)
         #Identify Post
-        post = Post.objects.get(pk=request.data['post'])
+        post = Post.objects.get(pk=request.data['postId'])
         # Create an instance of the comment
         comment = Comment()
         comment.user = dysclozur_user
@@ -74,5 +74,5 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields =('id', 'user', 'post', 'comment')
-        depth =1
+        depth =2
         

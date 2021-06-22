@@ -10,10 +10,18 @@ from rest_framework.decorators import action
 from dysclozur_api.models import Post, DysclozurUser, Flair
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
+import cloudinary
+from django.conf import settings
+import environ
+env = environ.Env()
+environ.Env.read_env()
+
+
+
 
 class PostView(ViewSet):
     """DYSCLOZUR POSTS"""
-    
+   
     def list(self, request):
         """Handle GET requests to POST resource
         Returns:
@@ -28,6 +36,13 @@ class PostView(ViewSet):
         Returns:
             Response -- JSON serialized post instance
         """
+        # cloudinary.config(cloud_name='dysclozur',
+        #         api_key=env('CLOUDINARY_API_KEY'),
+        #         api_secret=env('CLOUDINARY_SECRET_KEY'))
+        cloudinary.config(cloud_name=settings.CLOUDINARY_STORAGE['CLOUD_NAME'],
+                  api_key=int(settings.CLOUDINARY_STORAGE['API_KEY']),
+                  api_secret=settings.CLOUDINARY_STORAGE['API_SECRET'])
+
         user = DysclozurUser.objects.get(user=request.auth.user)
         post = Post()
         post.user = user
@@ -37,8 +52,17 @@ class PostView(ViewSet):
         post.link = request.data['link']
         post.url_pic = request.data['url_pic']
         post.url_video = request.data['url_video']
-        post.upload_pic = request.data['upload_pic']
-        post.upload_video = request.data['upload_video']
+        if request.data['upload_pic'] == None:
+            post.upload_pic = None
+        else:
+            upload_pic =  cloudinary.uploader.upload(request.data['upload_pic'], folder='dysclozurImages', format='jpg')
+            post.upload_pic = upload_pic['url']
+        if request.data['upload_video'] == None:
+            post.upload_video = None
+        else:
+            upload_video = cloudinary.uploader.upload(request.data['upload_video'], folder='dysclozurVideo', resource_type = 'video', quality = "auto")
+            post.upload_video = upload_video['url']
+        
 
         try:
             post.save()
@@ -64,6 +88,10 @@ class PostView(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
+        cloudinary.config(cloud_name=settings.CLOUDINARY_STORAGE['CLOUD_NAME'],
+                  api_key=int(settings.CLOUDINARY_STORAGE['API_KEY']),
+                  api_secret=settings.CLOUDINARY_STORAGE['API_SECRET'])
+                  
         user = DysclozurUser.objects.get(user=request.auth.user)
         post = Post.objects.get(pk=pk)
         post.user = user
@@ -73,8 +101,16 @@ class PostView(ViewSet):
         post.link = request.data['link']
         post.url_pic = request.data['url_pic']
         post.url_video = request.data['url_video']
-        post.upload_pic = request.data["upload_pic"]
-        post.upload_video = request.data['upload_video']
+        if request.data['upload_pic'] == None:
+            post.upload_pic = None
+        else:
+            upload_pic =  cloudinary.uploader.upload(request.data['upload_pic'], folder='dysclozurImages', format='jpg')
+            post.upload_pic = upload_pic['url']
+        if request.data['upload_video'] == None:
+            post.upload_video = None
+        else:
+            upload_video = cloudinary.uploader.upload(request.data['upload_video'], folder='dysclozurVideo', resource_type = 'video', quality = "auto")
+            post.upload_video = upload_video['url']
         
         post.save()
         return Response({}, status=status.HTTP_204_NO_CONTENT)

@@ -6,5 +6,6 @@
             "name": "dysclozur",
             "database": "db.sqlite3"
         }
-    ]
+    ],
+    "python.pythonPath": "/Users/samanthacampbell/.local/share/virtualenvs/dysclozur-server-U4xFZc-z/bin/python"
 }

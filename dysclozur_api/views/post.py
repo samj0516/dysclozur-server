@@ -164,5 +164,5 @@ class PostSerializer(serializers.ModelSerializer):
     user = DysclozurUserSerializer(many=False)
     class Meta:
         model = Post
-        fields = ('id', 'user', 'date_posted', 'title', 'text', 'link', 'url_pic', 'url_video', 'upload_pic', 'upload_video', 'flairs')
+        fields = ('id', 'user', 'date_posted', 'title', 'text', 'link', 'url_pic', 'url_video', 'upload_pic', 'upload_video', 'flairs', 'vote_set')
         depth = 2

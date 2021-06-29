@@ -1,0 +1,1 @@
+web: gunicorn dysclozur.wsgi --log-file -
